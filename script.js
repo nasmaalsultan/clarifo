@@ -20,7 +20,7 @@ form.addEventListener("submit", async function (e) {
 
     if (res.ok) {
       form.style.display = "none";
-      messageDiv.innerHTML = "<p>thank you. you're on the waitlist ✨</p>";
+      messageDiv.innerHTML = "<p>thank you. you're on the waitlist.</p>";
     } else {
       console.error("Formspree error:", result);
       messageDiv.innerHTML = "<p>something went wrong. please try again.</p>";
