@@ -13,19 +13,20 @@ form.addEventListener("submit", async function (e) {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify({ email: email }) // Make sure it's a plain object
     });
+
+    const result = await res.json();
 
     if (res.ok) {
       form.style.display = "none";
       messageDiv.innerHTML = "<p>thank you. you're on the waitlist ✨</p>";
     } else {
-      const data = await res.json();
-      console.error("Error details:", data);
+      console.error("Formspree error:", result);
       messageDiv.innerHTML = "<p>something went wrong. please try again.</p>";
     }
   } catch (err) {
-    console.error(err);
+    console.error("Network error:", err);
     messageDiv.innerHTML = "<p>error submitting form. check your connection.</p>";
   }
 });
