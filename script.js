@@ -1,11 +1,31 @@
-<form action="https://formspree.io/f/xjkryvgo" method="POST">
-  <label for="email">sign up to our waitlist</label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    placeholder="your email"
-    required
-  />
-  <button type="submit">submit</button>
-</form>
+const form = document.getElementById("waitlist-form");
+const messageDiv = document.getElementById("form-message");
+
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+
+  try {
+    const res = await fetch("https://formspree.io/f/xjkryvgo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ email: email })
+    });
+
+    if (res.ok) {
+      form.style.display = "none";
+      messageDiv.innerHTML = "<p>thank you. you're on the waitlist ✨</p>";
+    } else {
+      const data = await res.json();
+      console.error("Error details:", data);
+      messageDiv.innerHTML = "<p>something went wrong. please try again.</p>";
+    }
+  } catch (err) {
+    console.error(err);
+    messageDiv.innerHTML = "<p>error submitting form. check your connection.</p>";
+  }
+});
