@@ -11,11 +11,11 @@ function handleSubmit(event) {
   })
     .then((res) => res.text())
     .then((msg) => {
-      alert("You're on the list! 📨");
+      alert("thank you. you're on the waitlist.");
       document.getElementById("email").value = "";
     })
     .catch((err) => {
-      alert("Something went wrong.");
+      alert("something went wrong.");
       console.error(err);
     });
 }
