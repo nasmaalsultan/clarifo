@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarifo - Fact Checking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Clarifo</h1>
+            <p>A fact-checking system using TF-IDF and computational linguistics to verify claims</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="app-container">
+            <section class="input-section">
+                <h2>Check a Statement</h2>
+                <div class="form-group">
+                    <label for="statement">Enter the statement you want to verify:</label>
+                    <textarea id="statement" placeholder="e.g., The Earth revolves around the Sun."></textarea>
+                </div>
+                <button id="check-btn" class="btn">
+                    <i class="fas fa-search"></i> Check Accuracy
+                </button>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing statement and checking sources...</p>
+                </div>
+
+                <div class="algorithm-info">
+                    <h3>How It Works</h3>
+                    <div class="info-card">
+                        <h4>TF-IDF Algorithm</h4>
+                        <p>Term Frequency-Inverse Document Frequency analyzes your statement against verified sources to determine accuracy.</p>
+                    </div>
+                    <div class="info-card limitations">
+                        <h4>Current Limitations</h4>
+                        <p>Struggles with negated statements and complex sentence structures due to TF-IDF's bag-of-words approach.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section">
+                <h2>Fact-Check Results</h2>
+                <div id="results-placeholder">
+                    <p>Enter a statement and click "Check Accuracy" to see the results.</p>
+                </div>
+                <div id="results-content" style="display: none;">
+                    <div class="accuracy-display">
+                        <div class="accuracy-circle">
+                            <svg width="200" height="200" viewBox="0 0 200 200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#e9ecef" stroke-width="12" />
+                                <circle id="accuracy-meter" cx="100" cy="100" r="90" fill="none" stroke="#4361ee" stroke-width="12"
+                                        stroke-dasharray="565.48" stroke-dashoffset="565.48" stroke-linecap="round" transform="rotate(-90 100 100)" />
+                            </svg>
+                            <div class="accuracy-value" id="accuracy-value">0%</div>
+                        </div>
+                        <div class="accuracy-verdict" id="accuracy-verdict">Unable to verify</div>
+                        <div class="accuracy-label">Confidence Score</div>
+                    </div>
+
+                    <div class="analysis-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Algorithm Used:</span>
+                            <span class="detail-value">TF-IDF with Web Scraping</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Sources Analyzed:</span>
+                            <span class="detail-value" id="sources-count">0</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Processing Time:</span>
+                            <span class="detail-value" id="processing-time">0.0s</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Statement Complexity:</span>
+                            <span class="detail-value" id="complexity">Low</span>
+                        </div>
+                    </div>
+
+                    <div class="sources-list">
+                        <h3>Sources Analyzed</h3>
+                        <div id="sources-container">
+                            <!-- Sources will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="term-analysis" id="term-analysis" style="display: none;">
+                        <h3>Term Analysis</h3>
+                        <div id="terms-container"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Clarifo Fact-Checking System | TF-IDF + Beautiful Soup Implementation</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
