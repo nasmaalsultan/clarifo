@@ -51,24 +51,28 @@ Clarifo/
 ## Installation and Setup
 
 1. Clone the Repo
-
+```bash
 git clone https://github.com/yourusername/Clarifo.git
 cd Clarifo
-
+```
 2. Create a Virtual Environment
+```bash
 python -m venv venv
 source venv/bin/activate   # On macOS/Linux
 venv\Scripts\activate      # On Windows
-
-3. Install Dependencies
+```
+4. Install Dependencies
+```bash
 pip install -r requirements.txt
-
-4. Setup NLTK
+```
+6. Setup NLTK
+```bash
 python setup_nltk.py
-
-5. Run the App
+```
+8. Run the App
+```bash
 python app.py
-
+```
 ---
 
 ## Example Usage
